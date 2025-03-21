@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
-import { SearchBox } from '../Helper/SearchBox'
+import SearchBox from '../Helper/SearchBox'
+import ShoppingCardButton from '../Helper/ShoppingCardButton'
+import { Heart, User } from 'lucide-react'
 
 export const Nav = () => {
   return (
@@ -15,9 +17,12 @@ export const Nav = () => {
 
         {/* Icons */}
 
-        <div className='flex items-center space-x-6'>
-        <SearchBox/>
-        </div>
+          <div className='flex items-center space-x-6'>
+          <SearchBox/>
+          <Heart cursor={"pointer"}  size={26}/>
+          <ShoppingCardButton/>
+          <User  cursor={"pointer"} size={26}/>
+          </div>
       </div>
     </div>
   )
