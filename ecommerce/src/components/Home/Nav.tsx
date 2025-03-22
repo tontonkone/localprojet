@@ -4,6 +4,7 @@ import React from 'react'
 import SearchBox from '../Helper/SearchBox'
 import ShoppingCardButton from '../Helper/ShoppingCardButton'
 import { Heart, User } from 'lucide-react'
+import { SignedIn, SignedOut, SignOutButton, UserButton } from '@clerk/nextjs'
 
 export const Nav = () => {
   return (
@@ -21,7 +22,16 @@ export const Nav = () => {
           <SearchBox/>
           <Heart cursor={"pointer"}  size={26}/>
           <ShoppingCardButton/>
-          <User  cursor={"pointer"} size={26}/>
+
+          <SignedIn>
+            <UserButton/>
+          </SignedIn>
+
+          <SignedOut>
+            <SignOutButton>
+              <User  cursor={"pointer"} size={26}/>
+            </SignOutButton>
+          </SignedOut>
           </div>
       </div>
     </div>
