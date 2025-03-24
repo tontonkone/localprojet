@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@layer components{
+    .footer_title{
+      @apply text-xl text-black mb-6
+    }
+    .footer_link{
+      @apply text-gray-500 text-base mb-4 w-full 
+      cursor-pointer hover:text-blue-800
+    }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
