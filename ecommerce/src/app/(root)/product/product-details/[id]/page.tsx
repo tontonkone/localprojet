@@ -4,6 +4,7 @@ import { getProductByCategory, getSingleProduct } from '@/request/requests';
 import Image from 'next/image';
 import { StarIcon } from 'lucide-react';
 import AddCart from './add-cart';
+import ProductCard from '@/components/Home/ProductCard';
 
 interface ProductDetailsProps {
   params: { id: string };
@@ -48,7 +49,11 @@ const ProductDetails = async ({params}: ProductDetailsProps) => {
     </div>
           <div className="w-4/5 mx-auto mt-16">
         <h1 className="text-bold">Product related </h1>
-        <div className="grid grid-cols-1"></div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+          {relatedProducts.map((product)=>(
+            <ProductCard  key={product.id} product={product}/>
+          ))}
+        </div>
       </div>
     </div>
 
