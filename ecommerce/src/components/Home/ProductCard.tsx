@@ -5,14 +5,22 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, ShoppingBag, StarIcon } from 'lucide-react'
 import { Button } from '../ui/button'
+import { useDispatch } from 'react-redux'
+import { addItem } from '@/store/cartSlice'
 type Props = {
   product: Product
 }
 
 const ProductCard = ({product}: Props) => {
-  
+
   const num = Math.round(product.rating.rate);
   const arrayRanting = new Array(num).fill(0);
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product: Product)=> {
+    dispatch(addItem(product))
+  }
 
   return (
     <div className='p-4'>
@@ -35,7 +43,7 @@ const ProductCard = ({product}: Props) => {
         <p className=' font-bold text-lg opacity-80'>{product.price}</p>
       </div>
       <div className='mt-2 space-x-2 flex items-center'>
-        <Button size={'icon'}>
+        <Button onClick={()=> handleAddToCart(product)} size={'icon'}>
           <ShoppingBag size={18}/>
         </Button>
         <Button size={'icon'} className=' bg-red-600'>
