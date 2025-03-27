@@ -7,6 +7,8 @@ import { Heart, ShoppingBag, StarIcon } from 'lucide-react'
 import { Button } from '../ui/button'
 import { useDispatch } from 'react-redux'
 import { addItem } from '@/store/cartSlice'
+import { toast } from 'sonner'
+
 type Props = {
   product: Product
 }
@@ -19,6 +21,7 @@ const ProductCard = ({product}: Props) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product: Product)=> {
+    toast.success("ajouté ");
     dispatch(addItem(product))
   }
 

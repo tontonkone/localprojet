@@ -3,7 +3,7 @@ import { RootLocalState } from '@/store/store';
 import { ShoppingBag } from 'lucide-react'
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet';
 import CartSidebar from './CartSidebar';
 
 const ShoppingCardButton = () => {
@@ -19,6 +19,7 @@ const ShoppingCardButton = () => {
       </div>
       </SheetTrigger>
       <SheetContent className=' overflow-auto h-full' >
+        <SheetTitle/>
         <CartSidebar items={items}/>  
       </SheetContent>
     </Sheet>
