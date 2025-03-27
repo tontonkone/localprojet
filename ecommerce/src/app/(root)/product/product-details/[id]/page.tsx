@@ -44,7 +44,7 @@ const ProductDetails = async ({params}: ProductDetailsProps) => {
             <p className=' text-base text-gray-300'>{singleProduct.description}</p>
             <p className=' text-gray-400 text-sm'>Category: {singleProduct.category} </p>
             <p className=' text-sm text-gray-400'>tag: DGV</p>
-            <AddCart/>
+            <AddCart product={singleProduct}/>
       </div>
     </div>
           <div className="w-4/5 mx-auto mt-16">
