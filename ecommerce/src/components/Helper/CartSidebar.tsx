@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from '../ui/button'
 import { useDispatch } from 'react-redux'
 import { addItem, remove } from '@/store/cartSlice'
+import Link from 'next/link'
 
 type Props = {
   items: Product[]
@@ -44,7 +45,11 @@ const handleAdd = (item: Product)=> dispatch(addItem(item))
               
               ))
             }
+            <Link href={'/cart'}>
+              <Button className=' w-full mb-6 mt-6'> View all</Button>
+            </Link>
           </div>
+          
         )
       }
     </div>
