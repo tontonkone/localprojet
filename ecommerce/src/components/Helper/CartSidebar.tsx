@@ -45,11 +45,7 @@ const handleAdd = (item: Product)=> dispatch(addItem(item))
               
               ))
             }
-<<<<<<< HEAD
-            <Link href={'/cart'}>
-=======
             <Link href={'cart'}>
->>>>>>> 9682cf3f9fbd94c14bf562b57e6854de74480332
               <Button className=' w-full mb-6 mt-6'> View all</Button>
             </Link>
           </div>

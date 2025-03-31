@@ -4,6 +4,9 @@ import React, {useMemo} from 'react'
 import { useSelector } from 'react-redux'
 import { Product } from '../../../../typing'
 import Image from 'next/image'
+import { useUser } from '@clerk/nextjs'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 const Cart = () => {
 
@@ -12,8 +15,8 @@ const Cart = () => {
 
   // Calcul du prix total, TVA et prix final
   const { totalPrice, vat, totalPriceWithVat, totalQuantity } = useMemo(() => {
-    const total = items.reduce((acc, item) => acc + (item.quantity || 1), 0);
-    const totalQuantity = items.reduce((acc, item)=> acc +( item.quantity ?? 0),0)
+    const total = items.reduce((acc, item) => acc + (item.price || 0) * (item.quantity ?? 1), 0);
+    const totalQuantity = items.reduce((acc, item)=> acc +( item.quantity ?? 1 ),0)
     const vatAmount = total * 0.15;
     return {
       totalPrice: total.toFixed(2),
@@ -22,6 +25,8 @@ const Cart = () => {
       totalQuantity
     };
   }, [items]);
+
+  const {user} = useUser()
   return (
     <div className='mt-8 min-h-[60vh]'>
       {
@@ -56,11 +61,41 @@ const Cart = () => {
 
               </div>
 
-                <div className=' xl:col-span-2'>
-                  <div className="bg-indigo-500 sticky top-[25vh] p-6 rounded-lg">
-                    <h1> Summary</h1>
-                    <div className="w-full h-[1.2px]"></div>
+                <div className=' xl:col-span-2 text-white font-bold'>
+                  <div className="bg-indigo-950 sticky top-[25vh] p-6 rounded-lg">
+                    <h1 className=' text-2xl font-semibold text-white mb-8 mt-8'> Summary</h1>
+                    <div className="w-full h-[1.2px] bg-white opacity-20"></div>
+                    <div className="semi-bold uppercase flex items-center justify-between mt-10 mb-10">
+                      <span>price</span>
+                      <span>{totalPrice}</span>
+                    </div>
+                    <div className="semi-bold text-xl uppercase flex items-center justify-between mt-10 mb-10">
+                      <span>Vat</span>
+                      <span>{vat}</span>
+                    </div>
+                    <div className="semi-bold uppercase flex items-center justify-between mt-10 mb-10">
+                      <span>Shipping</span>
+                      <span>Free</span>
+                    </div>
+                                      <div className="w-full h-[1.2px] bg-white opacity-20"></div>
+                    <div className="semi-bold uppercase flex items-center justify-between mt-10 mb-10">
+                      <span>Total</span>
+                      <span>{totalPriceWithVat}</span>
+                    </div>
+                    {
+                      !user && (
+                        <Link href={'/sign-in'}>
+                          <Button className=' bg-orange-500 w-full'> Checkout</Button>
+                        </Link>
+                      )
+                    }
+                    {
+                      user && (
+                        <Button className=' bg-orange-300 w-full' > Paypal</Button>
+                      )
+                    }
                   </div>
+
                 </div>
 
             </div>
